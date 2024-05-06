@@ -1,24 +1,30 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
+
 const Budget = () => {
-    const { budget, remaining } = useContext(AppContext);
+    const { budget, total } = useContext(AppContext);
     const [newBudget, setNewBudget] = useState(budget);
     const handleBudgetChange = (event) => {
         setNewBudget(event.target.value);
 
-        if(newBudget < remaining) {
-                alert("You cannot reduce the budget value lower than the spending");
-                setNewBudget("")
-                return;
-            }
+
+        if(newBudget < total) {
+            alert("You cannot reduce the budget value lower than the spending");
+            setNewBudget("")
+            return;
+    }
         }
     return (
+
 <div className='alert alert-secondary'>
-<span>Budget: £{budget}</span>
+<span>Budget: £{newBudget}</span>
 <input type="number" step="10" value={newBudget} onChange={handleBudgetChange}></input>
 </div>
+
     );
+
+    
 };
 
 
